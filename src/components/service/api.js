@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const url =
-  "https://crudcrud.com/api/9194f0c8b00d49f5af8a3af6d14a18e8/ericssondemohlr/";
+  "https://crudcrud.com/api/504582f8a87a43e58393d3568e63aaaf/ericssondemohlr/";
 
 /**
  * @method getAllData

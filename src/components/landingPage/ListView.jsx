@@ -15,11 +15,8 @@ const ListView = ({ text }) => {
         } else {
           let filteredData = res.filter((data) => {
             return (
-              // data.GetResponseSubscriber.imsi
-              //   .toLowerCase()
-              //   .includes(text.toString().toLowerCase())
-              data.GetResponseSubscriber.imsi.includes("514025000145829")
-            )
+              data.GetResponseSubscriber.nam.toLowerCase().includes(text)
+            );
           }          
           );
           setDisplayData(filteredData);
