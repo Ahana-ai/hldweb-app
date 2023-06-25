@@ -14,11 +14,16 @@ import {
 } from "@mui/material";
 import AdbIcon from "@mui/icons-material/Adb";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useContext } from "react";
+import { AccountContext } from "../accounts/context/AccountProvider";
+import LoginDialog from "../accounts/loginDialog";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Navbar = () => {
+  const { account, setAccount } = useContext(AccountContext);
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -133,12 +138,29 @@ const Navbar = () => {
               ))}
             </Box>
 
-            <Box sx={{ flexGrow: 0 }}>
+            <Typography>{account.name}</Typography>
+            <Box sx={{ flexGrow: 0 }} ml={4}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="" />
+                  <Avatar alt={account.picture} src={account.picture} />
                 </IconButton>
               </Tooltip>
+              <button
+                onClick={() => {
+                  setAccount("");
+                }}
+                style={{
+                  backgroundColor: "black",
+                  color: "white",
+                  margin: "0 10px",
+                  padding: "10px 10px",
+                  cursor: "pointer",
+                  borderRadius: "20%",
+                  fontWeight: "bold",
+                }}
+              >
+                Log Out
+              </button>
               <Menu
                 sx={{ mt: "45px" }}
                 id="menu-appbar"

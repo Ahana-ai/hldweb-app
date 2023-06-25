@@ -5,13 +5,17 @@ import jwt_decode from "jwt-decode";
 import { useContext } from "react";
 import { AccountContext } from "./context/AccountProvider";
 
-const LoginDialog = () => {
-  const { setAccount } = useContext(AccountContext);
+const LoginDialog = ({ setItems }) => {
+  const { account, setAccount } = useContext(AccountContext);
 
   const onLoginSuccess = (res) => {
     const decoded = jwt_decode(res.credential);
     console.log(decoded);
     setAccount(decoded);
+    // setItems((previous) => {
+    //     if( account !== null ) return decoded
+    //     else return [...previous]
+    // });
   };
 
   return (
