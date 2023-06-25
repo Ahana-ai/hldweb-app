@@ -17,13 +17,5 @@ export const getAllData = async () => {
 };
 
 /**
- * @method getData
+ * @method addUser
  */
-export const getData = async () => {
-  try {
-    let res = await axios.get(`${url}/${id}`);
-    return res.data;
-  } catch (error) {
-    console.log("Error while calling getData--> ", error.message);
-  }
-};
