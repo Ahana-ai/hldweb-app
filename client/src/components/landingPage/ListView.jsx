@@ -8,10 +8,12 @@ const ListView = ({ text }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let res = await getAllData();
+        let dataReturn = await getAllData();
+        let res = dataReturn[1][2];
         console.log(res);
         if (text.toString().toLowerCase() === "all") {
           setDisplayData(res);
+          //log
         } else {
           let filteredData = res.filter((data) => {
             return (
@@ -23,6 +25,7 @@ const ListView = ({ text }) => {
             );
           });
           setDisplayData(filteredData);
+//log
         }
       } catch (error) {
         console.error("Error fetching data:", error);

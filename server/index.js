@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import Connections from './database/db.js';
+import router from './router/routes.js';
 
 dotenv.config();
 
@@ -19,7 +20,7 @@ app.use(
 );
 app.use(express.json({ extended: true }));
 
-// app.use("/", router);
+app.use("/", router);
 
 Connections();
 
