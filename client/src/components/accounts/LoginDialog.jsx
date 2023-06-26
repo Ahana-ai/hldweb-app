@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { AccountContext } from "./context/AccountProvider";
 
 const LoginDialog = ({ setItems }) => {
-  const { account, setAccount } = useContext(AccountContext);
+  const { setAccount } = useContext(AccountContext);
 
   const onLoginSuccess = (res) => {
     const decoded = jwt_decode(res.credential);

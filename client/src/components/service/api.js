@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const url =
-  "https://crudcrud.com/api/504582f8a87a43e58393d3568e63aaaf/ericssondemohlr/";
+  "https://crudcrud.com/api/723d0c093ec64dc4b042fc59baa10b75/ericssondemohlr/";
 
 /**
  * @method getAllData
@@ -18,4 +18,4 @@ export const getAllData = async () => {
 
 /**
  * @method addUser
- */
+*/
