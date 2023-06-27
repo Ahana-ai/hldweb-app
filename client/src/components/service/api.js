@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const url =
-  "https://crudcrud.com/api/5526c04c03f14822b7c8080b317545d4/ericssondemohlr/";
+  "https://crudcrud.com/api/a0cb38ecc5324a7aa4700e4b458c9e3c/ericssondemohlr/";
 
 const mongoUrl = "http://localhost:3000";
 
@@ -31,9 +31,10 @@ export const getAllData = async () => {
  */
 export const postLogs = async () => {
   try {
-    let res = await axios.post(`${mongoUrl}`);
-    console.log(res);
-
+    let data = await getAllData();
+    console.log(data);
+    let res = await axios.post(`${mongoUrl}/addLog`, data);
+    // return res.data;
   } catch (error) {
     console.log("Error while calling postLogs--> ", error.message);
   }

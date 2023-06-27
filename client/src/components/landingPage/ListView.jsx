@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getAllData } from "../service/api";
+import { getAllData, postLogs } from "../service/api";
 
 const ListView = ({ text }) => {
   const [displayData, setDisplayData] = useState([]);
@@ -13,7 +13,7 @@ const ListView = ({ text }) => {
         console.log(res);
         if (text.toString().toLowerCase() === "all") {
           setDisplayData(res);
-          //log
+          postLogs();
         } else {
           let filteredData = res.filter((data) => {
             return (
@@ -25,7 +25,7 @@ const ListView = ({ text }) => {
             );
           });
           setDisplayData(filteredData);
-//log
+          postLogs();
         }
       } catch (error) {
         console.error("Error fetching data:", error);

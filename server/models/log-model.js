@@ -1,8 +1,26 @@
 import mongoose from 'mongoose';
 
+const obj = {
+  type: Object,
+  required: true,
+}
+
+const reqSchema = {
+  url: obj,
+  method: obj,
+  headers: obj,
+  body: obj
+}
+
+const resSchema = {
+  statusCode: obj,
+  headers: obj,
+  body: obj
+}
+
 const LogSchema = new mongoose.Schema({
-    request : { type: Object },
-    response : { type: Object }
+    request : [reqSchema],
+    response : [resSchema]
 }, {
     timestamps: true
 });
