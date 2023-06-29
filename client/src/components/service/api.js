@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const url =
-  "https://crudcrud.com/api/a0cb38ecc5324a7aa4700e4b458c9e3c/ericssondemohlr/";
+  "https://crudcrud.com/api/4b3f880aaa6b489792813bf68e8fb56f/ericssondemohlr/";
 
 const mongoUrl = "http://localhost:3000";
 
@@ -27,14 +27,28 @@ export const getAllData = async () => {
 };
 
 /**
+ * @method getData
+ */
+
+/**
+ * @method postData
+ */
+export const postData = async (data) => {
+  try {
+    let res = await axios.post(url, data);
+    console.log("Data saved: ", res);
+  } catch (error) {
+    console.log("Error calling postData--> ", error.message);
+  }
+};
+
+/**
  * @method addLog
  */
 export const postLogs = async () => {
   try {
     let data = await getAllData();
-    console.log(data);
-    let res = await axios.post(`${mongoUrl}/addLog`, data);
-    // return res.data;
+    await axios.post(`${mongoUrl}/addLog`, data);
   } catch (error) {
     console.log("Error while calling postLogs--> ", error.message);
   }

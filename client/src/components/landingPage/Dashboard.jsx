@@ -5,7 +5,7 @@ import ListView from "./ListView";
 import { useState } from "react";
 
 const Dashboard = () => {
-    const [text, setText] = useState({});
+  const [text, setText] = useState({});
 
   return (
     <>

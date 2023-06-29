@@ -1,29 +1,37 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const obj = {
   type: Object,
   required: true,
-}
+};
+
+const str = {
+  type: String,
+  required: true,
+};
 
 const reqSchema = {
   url: obj,
   method: obj,
   headers: obj,
-  body: obj
-}
+  body: str,
+};
 
 const resSchema = {
   statusCode: obj,
   headers: obj,
-  body: obj
-}
+  body: str,
+};
 
-const LogSchema = new mongoose.Schema({
-    request : [reqSchema],
-    response : [resSchema]
-}, {
-    timestamps: true
-});
+const LogSchema = new mongoose.Schema(
+  {
+    request: [reqSchema],
+    response: [resSchema],
+  },
+  {
+    timestamps: true,
+  }
+);
 
 /**
  * "request": {
@@ -46,5 +54,5 @@ const LogSchema = new mongoose.Schema({
     "body": "Response payload (if applicable)"
  */
 
-const Logs = mongoose.model('Log', LogSchema);
+const Logs = mongoose.model("Log", LogSchema);
 export default Logs;
