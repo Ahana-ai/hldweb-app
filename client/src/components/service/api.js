@@ -1,9 +1,11 @@
 import axios from "axios";
 
 const url =
-  "https://crudcrud.com/api/4b3f880aaa6b489792813bf68e8fb56f/ericssondemohlr/";
+  "https://crudcrud.com/api/b3aa62dbd9a349fabf078b5ae1fffced/ericssondemohlr/";
 
 const mongoUrl = "http://localhost:3000";
+
+/** CRUD OPERATIONS ON REST  */
 
 let request, response, dataReturn;
 
@@ -27,8 +29,28 @@ export const getAllData = async () => {
 };
 
 /**
- * @method getData
+ * @method editData
  */
+export const editData = async (id, data) => {
+  try {
+    let res = await axios.put(`${url}/${id}`, data);
+    console.log("Data Saved: ", res);
+  } catch (error) {
+    console.log("Error while calling editData--> ", error.message);
+  }
+};
+
+/**
+ * @method deleteData
+ */
+export const deleteData = async (id) => {
+  try {
+    let res = axios.delete(`${url}/${id}`);
+    console.log("Data deleted!");
+  } catch (error) {
+    console.log("Error while calling deleteData--> ", error.message);
+  }
+};
 
 /**
  * @method postData
@@ -41,6 +63,9 @@ export const postData = async (data) => {
     console.log("Error calling postData--> ", error.message);
   }
 };
+
+
+/** TRANSACTIONAL LOGS  */
 
 /**
  * @method addLog

@@ -12,7 +12,7 @@ class LogController {
             url: req.body[0][0],
             method: req.body[0][1],
             headers: req.body[0][2],
-            body: "[" + JSON.stringify(req.body[0][3]) + "]",
+            body: "'" + JSON.stringify(req.body[0][3]) + "'",
           },
         ],
         response: [

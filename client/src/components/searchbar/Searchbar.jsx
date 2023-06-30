@@ -1,10 +1,6 @@
 import { Box, TextField } from "@mui/material";
-import { useState } from "react";
 
 const Searchbar = ({ setText }) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
   return (
     <Box component="form">
       <TextField
