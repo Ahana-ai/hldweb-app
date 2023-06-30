@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { postSoapLogs } from "../service/api";
+import { Button, Input, TextareaAutosize, Typography } from "@mui/material";
 // import { createProxyMiddleware } from 'http-proxy-middleware';
 
 // // Proxy configuration
@@ -38,18 +40,29 @@ const CountryDetails = () => {
  `;
 
     try {
-      const response = await axios.post("/api", xml, {
+      const res = await axios.post("/api", xml, {
         headers: {
           "Content-Type": "text/xml",
         },
       });
 
       const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(response.data, "text/xml");
+      const xmlDoc = parser.parseFromString(res.data, "text/xml");
       const capitalCity = xmlDoc.getElementsByTagName("m:CapitalCityResult")[0]
         .textContent;
 
       setCapital(capitalCity);
+
+      let service = [
+        "POST",
+        "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso",
+        axios.defaults.headers.common,
+        xml,
+      ];
+      let response = [res.status + ":" + res.statusText, res.headers, res.data];
+      let dataReturn = [service, response];
+      console.log(dataReturn);
+      postSoapLogs(dataReturn);
     } catch (error) {
       console.error("SOAP FAIL:", error);
     }
@@ -61,12 +74,48 @@ const CountryDetails = () => {
         color: "white",
       }}
     >
-      <input
-        type="text"
+      <Input
+        sx={{
+          margin: "20px 0",
+          textAlign: "center",
+          alignItems: "center",
+          
+          input: {
+            color: "white",
+          },
+          label: {
+            color: "white",
+          },
+          "&:hover": {
+            label: { color: "white" },
+          },
+        }}
+        color="primary"
+        placeholder="Enter a Country"
+        variant="soft"
         value={country}
         onChange={(e) => setCountry(e.target.value)}
       />
-      <button onClick={handleGetCapitalCity}>Get Capital City</button>
+      <Button sx={{
+        margin : "10px", 
+        }} 
+        onClick={handleGetCapitalCity}>
+        <Typography
+          sx={{
+            
+              color: "white",
+              padding: "8px",
+
+            "&:hover": {
+              backgroundColor: "white",
+              color: "black",
+              fontWeight: "bold"
+            },
+          }}
+        >
+          Get Capital City
+        </Typography>
+      </Button>
       {capital && <p>Capital City: {capital}</p>}
     </div>
   );

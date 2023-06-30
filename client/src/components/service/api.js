@@ -68,13 +68,24 @@ export const postData = async (data) => {
 /** TRANSACTIONAL LOGS  */
 
 /**
- * @method addLog
+ * @method postRestLogs
  */
-export const postLogs = async () => {
+export const postRestLogs = async () => {
   try {
     let data = await getAllData();
-    await axios.post(`${mongoUrl}/addLog`, data);
+    await axios.post(`${mongoUrl}/addRestLog`, data);
   } catch (error) {
-    console.log("Error while calling postLogs--> ", error.message);
+    console.log("Error while calling postRestLogs--> ", error.message);
+  }
+};
+
+/**
+ * @methos postSoapLogs
+ */
+export const postSoapLogs = async (data) => {
+  try {
+    await axios.post(`${mongoUrl}/addSoapLog`, data);
+  } catch (error) {
+    console.log("Error while calling postSoapLogs--> ", error.message);
   }
 };

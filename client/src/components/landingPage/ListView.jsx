@@ -1,10 +1,9 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getAllData, postLogs } from "../service/api";
+import { getAllData, postRestLogs } from "../service/api";
 
 const ListView = ({ text }) => {
   const [displayData, setDisplayData] = useState([]);
-  const [newData, setNewData] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +13,7 @@ const ListView = ({ text }) => {
         console.log(res);
         if (text.toString().toLowerCase() === "all") {
           setDisplayData(res);
-          postLogs();
+          postRestLogs();
         } else {
           let filteredData = res.filter((data) => {
             return (
@@ -26,7 +25,7 @@ const ListView = ({ text }) => {
             );
           });
           setDisplayData(filteredData);
-          postLogs();
+          postRestLogs();
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -55,6 +54,8 @@ const ListView = ({ text }) => {
               <h4>Optgprss</h4>
 
               <Button onClick={() => createData()}>Create</Button>
+              <Button>Edit</Button>
+              <Button>Delete</Button>
             </Box>
           );
         })}

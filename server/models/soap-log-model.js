@@ -10,8 +10,8 @@ const str = {
   required: true,
 };
 
-const reqSchema = {
-  url: obj,
+const serSchema = {
+  wsdl: obj,
   method: obj,
   headers: obj,
   body: str,
@@ -25,7 +25,7 @@ const resSchema = {
 
 const LogSchema = new mongoose.Schema(
   {
-    request: [reqSchema],
+    service: [serSchema],
     response: [resSchema],
   },
   {
@@ -34,15 +34,18 @@ const LogSchema = new mongoose.Schema(
 );
 
 /**
- * "request": {
-    "url": "URL of the API endpoint",
-    "method": "HTTP method (GET, POST, PUT, DELETE, etc.)",
+ * {
+  "_id": "Unique identifier",
+  "timestamp": "Timestamp of the SOAP call",
+  "service": {
+    "wsdl": "WSDL URL of the SOAP service",
+    "method": "SOAP method called",
     "headers": {
       "key1": "value1",
       "key2": "value2",
       ...
     },
-    "body": "Request payload (if applicable)"
+    "body": "SOAP request body"
   },
   "response": {
     "statusCode": "HTTP status code",
@@ -51,8 +54,10 @@ const LogSchema = new mongoose.Schema(
       "key2": "value2",
       ...
     },
-    "body": "Response payload (if applicable)"
+    "body": "SOAP response body"
+  }
+}
  */
 
-const Logs = mongoose.model("Log", LogSchema);
-export default Logs;
+const SoapLogs = mongoose.model("SoapLog", LogSchema);
+export default SoapLogs;
