@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getAllData, postRestLogs } from "../service/api";
+import { deleteData, editData, getAllData, postData, postRestLogs } from "../service/api";
 
 const ListView = ({ text }) => {
   const [displayData, setDisplayData] = useState([]);
@@ -34,7 +34,6 @@ const ListView = ({ text }) => {
     fetchData();
   }, [text]);
 
-  const createData = () => {};
 
   return (
     <>
@@ -53,9 +52,9 @@ const ListView = ({ text }) => {
               <p>Smsmt: {data.GetResponseSubscriber.services.smsmt}</p>
               <h4>Optgprss</h4>
 
-              <Button onClick={() => createData()}>Create</Button>
-              <Button>Edit</Button>
-              <Button>Delete</Button>
+              <Button onClick={postData}>Create</Button>
+              <Button onClick={editData}>Edit</Button>
+              <Button onClick={deleteData}>Delete</Button>
             </Box>
           );
         })}

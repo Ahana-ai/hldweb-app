@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const url =
-  "https://crudcrud.com/api/b3aa62dbd9a349fabf078b5ae1fffced/ericssondemohlr/";
+  "https://crudcrud.com/api/65c5f9dc151a4ca38d5fe4c52511dc95/ericssondemohlr/";
 
 const mongoUrl = "http://localhost:3000";
 
@@ -14,7 +14,7 @@ let request, response, dataReturn;
  */
 export const getAllData = async () => {
   try {
-    let res = await axios.get(`${url}`);
+    let res = await axios.get(`/api3`);
     console.log(res.data);
 
     request = ["GET", url, axios.defaults.headers.common, ""];
@@ -31,9 +31,62 @@ export const getAllData = async () => {
 /**
  * @method editData
  */
-export const editData = async (id, data) => {
+export const editData = async (
+  //id, data
+  ) => {
   try {
-    let res = await axios.put(`${url}/${id}`, data);
+    let id = "649FD31EC632B703E8308241";
+    let data = {
+      "GetResponseSubscriber": {
+        "imsi": "734025000145829",
+        "msisdn": "584124997370",
+        "hlrsn": "4",
+        "cardType": "USIM",
+        "nam": "BOTH",
+        "services": {
+          "clip": {
+            "prov": "PROV"
+          },
+          "smsmt": "",
+          "optgprss": {
+            "optgprs": [
+              {
+                "prov": "TRUE",
+                "cntxId": "3"
+              },
+              {
+                "prov": "TRUE",
+                "cntxId": "5"
+              },
+              {
+                "prov": "TRUE",
+                "cntxId": "3"
+              },
+              {
+                "prov": "TRUE",
+                "cntxId": "5"
+              }
+            ]
+          },
+          "odboc": {
+            "odboc": "BOIC"
+          },
+          "odbroam": {
+            "odbroam": "BROHPLMNC"
+          },
+          "category": {
+            "category": "COMMON"
+          },
+          "eps": {
+            "prov": "TRUE"
+          },
+          "smdp": "MSC"
+        },
+        "rroption": "ALL_PLMNS",
+        "skey": "0"
+      }
+    }
+    let res = await axios.put(`/api3/${id}`, data);
     console.log("Data Saved: ", res);
   } catch (error) {
     console.log("Error while calling editData--> ", error.message);
@@ -43,9 +96,12 @@ export const editData = async (id, data) => {
 /**
  * @method deleteData
  */
-export const deleteData = async (id) => {
+export const deleteData = async (
+  //id
+  ) => {
   try {
-    let res = axios.delete(`${url}/${id}`);
+    let id = "649FD31EC632B703E8308242";
+    axios.delete(`/api3/${id}`);
     console.log("Data deleted!");
   } catch (error) {
     console.log("Error while calling deleteData--> ", error.message);
@@ -55,10 +111,62 @@ export const deleteData = async (id) => {
 /**
  * @method postData
  */
-export const postData = async (data) => {
+export const postData = async (
+  //data
+) => {
   try {
-    let res = await axios.post(url, data);
-    console.log("Data saved: ", res);
+    let data = {
+      "GetResponseSubscriber": {
+        "imsi": "734025000145829",
+        "msisdn": "584124997370",
+        "hlrsn": "1",
+        "cardType": "USIM",
+        "nam": "BOTH",
+        "services": {
+          "clip": {
+            "prov": "PROV"
+          },
+          "smsmt": "",
+          "optgprss": {
+            "optgprs": [
+              {
+                "prov": "TRUE",
+                "cntxId": "3"
+              },
+              {
+                "prov": "TRUE",
+                "cntxId": "5"
+              },
+              {
+                "prov": "TRUE",
+                "cntxId": "3"
+              },
+              {
+                "prov": "TRUE",
+                "cntxId": "5"
+              }
+            ]
+          },
+          "odboc": {
+            "odboc": "BOIC"
+          },
+          "odbroam": {
+            "odbroam": "BROHPLMNC"
+          },
+          "category": {
+            "category": "COMMON"
+          },
+          "eps": {
+            "prov": "TRUE"
+          },
+          "smdp": "MSC"
+        },
+        "rroption": "ALL_PLMNS",
+        "skey": "0"
+      }
+    }
+    let res = await axios.post('/api3', data);
+    console.log("Data saved: ", res.data);
   } catch (error) {
     console.log("Error calling postData--> ", error.message);
   }
@@ -73,7 +181,8 @@ export const postData = async (data) => {
 export const postRestLogs = async () => {
   try {
     let data = await getAllData();
-    await axios.post(`${mongoUrl}/addRestLog`, data);
+    await axios.post('/api2/addRestLog', data);
+    console.log("SAVED1!!");
   } catch (error) {
     console.log("Error while calling postRestLogs--> ", error.message);
   }
@@ -84,7 +193,8 @@ export const postRestLogs = async () => {
  */
 export const postSoapLogs = async (data) => {
   try {
-    await axios.post(`${mongoUrl}/addSoapLog`, data);
+    await axios.post(`/api2/addSoapLog`, data);
+    console.log("SAVED2!!");
   } catch (error) {
     console.log("Error while calling postSoapLogs--> ", error.message);
   }

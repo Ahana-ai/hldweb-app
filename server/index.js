@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import cors from "cors";
 import Connections from "./database/db.js";
 import router from "./router/routes.js";
-// import { createProxyMiddleware } from "http-proxy-middleware";
 
 dotenv.config();
 
@@ -22,13 +21,7 @@ app.use(
 app.use(express.json({ extended: true }));
 
 app.use("/", router);
-// // Proxy configuration
-// const proxy = createProxyMiddleware({
-//   target: "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso",
-//   changeOrigin: true,
-// });
-
-// app.use("/", proxy); // Use the proxy for requests to '/api'
+app.use("/api2", router);
 
 Connections();
 
