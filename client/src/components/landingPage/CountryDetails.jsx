@@ -1,24 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { postSoapLogs } from "../service/api";
-import { Button, Input, Typography } from "@mui/material";
+import { Box, Button, Input, Typography } from "@mui/material";
 
 const CountryDetails = () => {
   const [country, setCountry] = useState("");
+  const [countryCode, setCountryCode] = useState("");
   const [capital, setCapital] = useState("");
 
-  const handleGetCapitalCity = async () => {
-    const xml = `
-      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.oorsprong.org/websamples.countryinfo">
-        <soapenv:Header/>
-        <soapenv:Body>
-           <web:CapitalCity>
-              <web:sCountryISOCode>${country.toUpperCase()}</web:sCountryISOCode>
-           </web:CapitalCity>
-        </soapenv:Body>
-      </soapenv:Envelope>
-    `;
-
+  const handleGetCountryCode = async () => {
     const xml2 = `
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.oorsprong.org/websamples.countryinfo">
     <soapenv:Header/>
@@ -29,6 +19,32 @@ const CountryDetails = () => {
     </soapenv:Body>
  </soapenv:Envelope>
  `;
+
+    const res2 = await axios.post("/api1", xml2, {
+      headers: {
+        "Content-Type": "text/xml",
+      },
+    });
+
+    const parser = new DOMParser();
+
+    const xmlDoc = parser.parseFromString(res2.data, "text/xml");
+    const cityIsoCode =
+      xmlDoc.getElementsByTagName("m:sISOCode")[0].textContent;
+    setCountryCode(cityIsoCode);
+  };
+
+  const handleGetCapitalCity = async () => {
+    const xml = `
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.oorsprong.org/websamples.countryinfo">
+        <soapenv:Header/>
+        <soapenv:Body>
+           <web:CapitalCity>
+              <web:sCountryISOCode>${countryCode.toUpperCase()}</web:sCountryISOCode>
+           </web:CapitalCity>
+        </soapenv:Body>
+      </soapenv:Envelope>
+    `;
 
     try {
       const res = await axios.post("/api1", xml, {
@@ -60,56 +76,109 @@ const CountryDetails = () => {
   };
 
   return (
-    <div
-      style={{
-        color: "white",
-      }}
-    >
-      <Input
+    <>
+      <Box
         sx={{
-          margin: "20px 0",
-          textAlign: "center",
-          alignItems: "center",
-
-          input: {
-            color: "white",
-          },
-          label: {
-            color: "white",
-          },
-          "&:hover": {
-            label: { color: "white" },
-          },
+          color: "white",
         }}
-        color="primary"
-        placeholder="Enter a Country"
-        variant="soft"
-        value={country}
-        onChange={(e) => setCountry(e.target.value)}
-      />
-      <Button
-        sx={{
-          margin: "10px",
-        }}
-        onClick={handleGetCapitalCity}
       >
-        <Typography
+        <Input
           sx={{
-            color: "white",
-            padding: "8px",
+            margin: "20px 0",
+            textAlign: "center",
+            alignItems: "center",
 
+            input: {
+              color: "white",
+            },
+            label: {
+              color: "white",
+            },
             "&:hover": {
-              backgroundColor: "white",
-              color: "black",
-              fontWeight: "bold",
+              label: { color: "white" },
             },
           }}
+          color="primary"
+          placeholder="Enter a Country ISO Code"
+          variant="soft"
+          value={countryCode}
+          onChange={(e) => setCountryCode(e.target.value)}
+        />
+        <Button
+          sx={{
+            margin: "10px",
+          }}
+          onClick={handleGetCapitalCity}
         >
-          Get Capital City
-        </Typography>
-      </Button>
-      {capital && <p>Capital City: {capital}</p>}
-    </div>
+          <Typography
+            sx={{
+              color: "white",
+              padding: "8px",
+
+              "&:hover": {
+                backgroundColor: "white",
+                color: "black",
+                fontWeight: "bold",
+              },
+            }}
+          >
+            Get Capital City
+          </Typography>
+        </Button>
+        {capital && <p>Capital City: {capital}</p>}
+      </Box>
+
+      <Box
+        sx={{
+          color: "white",
+        }}
+      >
+        <Input
+          sx={{
+            margin: "20px 0",
+            textAlign: "center",
+            alignItems: "center",
+
+            input: {
+              color: "white",
+            },
+            label: {
+              color: "white",
+            },
+            "&:hover": {
+              label: { color: "white" },
+            },
+          }}
+          color="primary"
+          placeholder="Enter a Country"
+          variant="soft"
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+        />
+        <Button
+          sx={{
+            margin: "10px",
+          }}
+          onClick={handleGetCountryCode}
+        >
+          <Typography
+            sx={{
+              color: "white",
+              padding: "8px",
+
+              "&:hover": {
+                backgroundColor: "white",
+                color: "black",
+                fontWeight: "bold",
+              },
+            }}
+          >
+            Get Country Code
+          </Typography>
+        </Button>
+        {countryCode && <p>Country Code: {countryCode}</p>}
+      </Box>
+    </>
   );
 };
 

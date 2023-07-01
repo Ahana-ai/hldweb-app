@@ -35,7 +35,7 @@ export const editData = async (
   //id, data
   ) => {
   try {
-    let id = "649FD31EC632B703E8308241";
+    let id = "649FE010C632B703E830829F";
     let data = {
       "GetResponseSubscriber": {
         "imsi": "734025000145829",
@@ -100,7 +100,8 @@ export const deleteData = async (
   //id
   ) => {
   try {
-    let res = axios.delete(`${url}/${id}`);
+    let id = "649FE010C632B703E830829F"
+    let res = axios.delete(`/api3/${id}`);
     console.log("Data deleted!");
   } catch (error) {
     console.log("Error while calling deleteData--> ", error.message);

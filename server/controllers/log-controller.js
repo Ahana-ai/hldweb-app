@@ -25,7 +25,7 @@ class LogController {
         ],
       }).save();
     } catch (error) {
-      console.log("Error while newLog api calling : ", error.message);
+      console.log("Error while newRestLog api calling : ", error.message);
       return res.status(500).json(error.message);
     }
   }
@@ -53,7 +53,7 @@ class LogController {
         ],
       }).save();
     } catch (error) {
-      console.log("Error while newLog api calling : ", error.message);
+      console.log("Error while newSoapLog api calling : ", error.message);
       return res.status(500).json(error.message);
     }
   }
