@@ -1,16 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { postSoapLogs } from "../service/api";
-import { Button, Input, TextareaAutosize, Typography } from "@mui/material";
-// import { createProxyMiddleware } from 'http-proxy-middleware';
-
-// // Proxy configuration
-// const proxy = createProxyMiddleware({
-//   target: 'http://webservices.oorsprong.org',
-//   changeOrigin: true,
-// });
-
-// axios.defaults.baseURL = '/api'; // Set the base URL for Axios requests
+import { Button, Input, Typography } from "@mui/material";
 
 const CountryDetails = () => {
   const [country, setCountry] = useState("");
@@ -40,7 +31,7 @@ const CountryDetails = () => {
  `;
 
     try {
-      const res = await axios.post("/api", xml, {
+      const res = await axios.post("/api1", xml, {
         headers: {
           "Content-Type": "text/xml",
         },
@@ -79,7 +70,7 @@ const CountryDetails = () => {
           margin: "20px 0",
           textAlign: "center",
           alignItems: "center",
-          
+
           input: {
             color: "white",
           },
@@ -96,20 +87,21 @@ const CountryDetails = () => {
         value={country}
         onChange={(e) => setCountry(e.target.value)}
       />
-      <Button sx={{
-        margin : "10px", 
-        }} 
-        onClick={handleGetCapitalCity}>
+      <Button
+        sx={{
+          margin: "10px",
+        }}
+        onClick={handleGetCapitalCity}
+      >
         <Typography
           sx={{
-            
-              color: "white",
-              padding: "8px",
+            color: "white",
+            padding: "8px",
 
             "&:hover": {
               backgroundColor: "white",
               color: "black",
-              fontWeight: "bold"
+              fontWeight: "bold",
             },
           }}
         >
