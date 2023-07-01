@@ -40,7 +40,7 @@ const ListView = ({ text }) => {
       <div>
         {displayData.map((data, index) => {
           return (
-            <Box key={index}>
+            <Box key={data._id}>
               <h1>ID: {data._id}</h1>
               <Typography>IMSI: {data.GetResponseSubscriber.imsi}</Typography>
               <p>MSISDN: {data.GetResponseSubscriber.msisdn}</p>

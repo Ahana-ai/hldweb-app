@@ -12,7 +12,7 @@ const app = express();
 
 //To allow cross-origin requests -> occurs as backend runs in different port than the frontend
 //can only be handled in backend
-app.use(cors());
+// app.use(cors());
 app.use(
   express.urlencoded({
     extended: true,

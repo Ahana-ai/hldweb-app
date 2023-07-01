@@ -100,7 +100,7 @@ export const deleteData = async (
   //id
   ) => {
   try {
-    let id = "649FD31EC632B703E8308242";
+    let id = "649fdeafc632b703e8308291";
     axios.delete(`/api3/${id}`);
     console.log("Data deleted!");
   } catch (error) {

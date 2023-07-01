@@ -11,8 +11,18 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api1/, ''),
       },
-      "/api2": "http://localhost:3000",
-      "/api3": "https://crudcrud.com/api/65c5f9dc151a4ca38d5fe4c52511dc95/ericssondemohlr/",
+      "/api2": {
+        target:
+          "http://localhost:3000",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api2/, ''),
+      },
+      "/api3": {
+        target:
+          "https://crudcrud.com/api/7f1f3f605bd04aec98c81abc53f35c64/ericssondemohlr/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api3/, ''),
+      },
     },
   },
   plugins: [react()],
