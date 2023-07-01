@@ -100,8 +100,7 @@ export const deleteData = async (
   //id
   ) => {
   try {
-    let id = "649fdeafc632b703e8308291";
-    axios.delete(`/api3/${id}`);
+    let res = axios.delete(`${url}/${id}`);
     console.log("Data deleted!");
   } catch (error) {
     console.log("Error while calling deleteData--> ", error.message);
