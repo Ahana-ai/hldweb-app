@@ -19,7 +19,7 @@ export default defineConfig({
       },
       "/api3": {
         target:
-          "https://crudcrud.com/api/7f1f3f605bd04aec98c81abc53f35c64/ericssondemohlr/",
+          "https://crudcrud.com/api/de9809e23e8246e8a63538669bb8efdf/ericssondemohlr/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api3/, ''),
       },

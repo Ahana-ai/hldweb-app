@@ -12,10 +12,6 @@ const LoginDialog = ({ setItems }) => {
     const decoded = jwt_decode(res.credential);
     console.log(decoded);
     setAccount(decoded);
-    // setItems((previous) => {
-    //     if( account !== null ) return decoded
-    //     else return [...previous]
-    // });
   };
 
   return (

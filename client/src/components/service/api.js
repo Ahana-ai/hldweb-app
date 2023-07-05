@@ -31,147 +31,146 @@ export const getAllData = async () => {
 /**
  * @method editData
  */
-export const editData = async (
+export const editData = async () =>
   //id, data
-  ) => {
-  try {
-    let id = "649FE010C632B703E830829F";
-    let data = {
-      "GetResponseSubscriber": {
-        "imsi": "734025000145829",
-        "msisdn": "584124997370",
-        "hlrsn": "4",
-        "cardType": "USIM",
-        "nam": "BOTH",
-        "services": {
-          "clip": {
-            "prov": "PROV"
+  {
+    try {
+      let id = "649FE010C632B703E830829F";
+      let data = {
+        GetResponseSubscriber: {
+          imsi: "734025000145829",
+          msisdn: "584124997370",
+          hlrsn: "4",
+          cardType: "USIM",
+          nam: "BOTH",
+          services: {
+            clip: {
+              prov: "PROV",
+            },
+            smsmt: "",
+            optgprss: {
+              optgprs: [
+                {
+                  prov: "TRUE",
+                  cntxId: "3",
+                },
+                {
+                  prov: "TRUE",
+                  cntxId: "5",
+                },
+                {
+                  prov: "TRUE",
+                  cntxId: "3",
+                },
+                {
+                  prov: "TRUE",
+                  cntxId: "5",
+                },
+              ],
+            },
+            odboc: {
+              odboc: "BOIC",
+            },
+            odbroam: {
+              odbroam: "BROHPLMNC",
+            },
+            category: {
+              category: "COMMON",
+            },
+            eps: {
+              prov: "TRUE",
+            },
+            smdp: "MSC",
           },
-          "smsmt": "",
-          "optgprss": {
-            "optgprs": [
-              {
-                "prov": "TRUE",
-                "cntxId": "3"
-              },
-              {
-                "prov": "TRUE",
-                "cntxId": "5"
-              },
-              {
-                "prov": "TRUE",
-                "cntxId": "3"
-              },
-              {
-                "prov": "TRUE",
-                "cntxId": "5"
-              }
-            ]
-          },
-          "odboc": {
-            "odboc": "BOIC"
-          },
-          "odbroam": {
-            "odbroam": "BROHPLMNC"
-          },
-          "category": {
-            "category": "COMMON"
-          },
-          "eps": {
-            "prov": "TRUE"
-          },
-          "smdp": "MSC"
+          rroption: "ALL_PLMNS",
+          skey: "0",
         },
-        "rroption": "ALL_PLMNS",
-        "skey": "0"
-      }
+      };
+      let res = await axios.put(`/api3/${id}`, data);
+      console.log("Data Saved: ", res);
+    } catch (error) {
+      console.log("Error while calling editData--> ", error.message);
     }
-    let res = await axios.put(`/api3/${id}`, data);
-    console.log("Data Saved: ", res);
-  } catch (error) {
-    console.log("Error while calling editData--> ", error.message);
-  }
-};
+  };
 
 /**
  * @method deleteData
  */
-export const deleteData = async (
+export const deleteData = async () =>
   //id
-  ) => {
-  try {
-    let id = "649FE010C632B703E830829F"
-    let res = axios.delete(`/api3/${id}`);
-    console.log("Data deleted!");
-  } catch (error) {
-    console.log("Error while calling deleteData--> ", error.message);
-  }
-};
+  {
+    try {
+      let id = "649FE010C632B703E830829F";
+      axios.delete(`/api3/${id}`);
+      console.log("Data deleted!");
+    } catch (error) {
+      console.log("Error while calling deleteData--> ", error.message);
+    }
+  };
 
 /**
  * @method postData
  */
-export const postData = async (
+export const postData = async () =>
   //data
-) => {
-  try {
-    let data = {
-      "GetResponseSubscriber": {
-        "imsi": "734025000145829",
-        "msisdn": "584124997370",
-        "hlrsn": "1",
-        "cardType": "USIM",
-        "nam": "BOTH",
-        "services": {
-          "clip": {
-            "prov": "PROV"
+  {
+    try {
+      let data = {
+        GetResponseSubscriber: {
+          imsi: "734025000145829",
+          msisdn: "584124997370",
+          hlrsn: "1",
+          cardType: "USIM",
+          nam: "BOTH",
+          services: {
+            clip: {
+              prov: "PROV",
+            },
+            smsmt: "",
+            optgprss: {
+              optgprs: [
+                {
+                  prov: "TRUE",
+                  cntxId: "3",
+                },
+                {
+                  prov: "TRUE",
+                  cntxId: "5",
+                },
+                {
+                  prov: "TRUE",
+                  cntxId: "3",
+                },
+                {
+                  prov: "TRUE",
+                  cntxId: "5",
+                },
+              ],
+            },
+            odboc: {
+              odboc: "BOIC",
+            },
+            odbroam: {
+              odbroam: "BROHPLMNC",
+            },
+            category: {
+              category: "COMMON",
+            },
+            eps: {
+              prov: "TRUE",
+            },
+            smdp: "MSC",
           },
-          "smsmt": "",
-          "optgprss": {
-            "optgprs": [
-              {
-                "prov": "TRUE",
-                "cntxId": "3"
-              },
-              {
-                "prov": "TRUE",
-                "cntxId": "5"
-              },
-              {
-                "prov": "TRUE",
-                "cntxId": "3"
-              },
-              {
-                "prov": "TRUE",
-                "cntxId": "5"
-              }
-            ]
-          },
-          "odboc": {
-            "odboc": "BOIC"
-          },
-          "odbroam": {
-            "odbroam": "BROHPLMNC"
-          },
-          "category": {
-            "category": "COMMON"
-          },
-          "eps": {
-            "prov": "TRUE"
-          },
-          "smdp": "MSC"
+          rroption: "ALL_PLMNS",
+          skey: "0",
         },
-        "rroption": "ALL_PLMNS",
-        "skey": "0"
-      }
+      };
+      let res = await axios.post("/api3", data);
+      console.log("Data saved: ", res.data);
+    } catch (error) {
+      console.log("Error calling postData--> ", error.message);
     }
-    let res = await axios.post('/api3', data);
-    console.log("Data saved: ", res.data);
-  } catch (error) {
-    console.log("Error calling postData--> ", error.message);
-  }
-};
-
+  };
 
 /** TRANSACTIONAL LOGS  */
 
@@ -181,7 +180,7 @@ export const postData = async (
 export const postRestLogs = async () => {
   try {
     let data = await getAllData();
-    await axios.post('/api2/addRestLog', data);
+    await axios.post("/api2/addRestLog", data);
     console.log("SAVED1!!");
   } catch (error) {
     console.log("Error while calling postRestLogs--> ", error.message);

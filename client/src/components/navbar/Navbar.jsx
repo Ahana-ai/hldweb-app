@@ -16,7 +16,6 @@ import AdbIcon from "@mui/icons-material/Adb";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useContext } from "react";
 import { AccountContext } from "../accounts/context/AccountProvider";
-import LoginDialog from "../accounts/loginDialog";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
