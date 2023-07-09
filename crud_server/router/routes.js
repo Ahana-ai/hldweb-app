@@ -4,7 +4,7 @@ import DataController from "../controllers/controller.js";
 
 router.post("/new-data", DataController.postData);
 router.get("/all-data", DataController.getAllData);
-router.get("/data/:id", DataController.getDataById);
+router.get("/data/:imsi", DataController.getDataByImsi);
 router.put("/update-data/:imsi", DataController.updateDataByImsi);
 router.delete("/delete-data/:imsi", DataController.deleteDataByImsi);
 router.delete("/delete/:imsi", DataController.deleteData);

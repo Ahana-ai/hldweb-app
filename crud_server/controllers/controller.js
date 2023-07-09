@@ -54,7 +54,7 @@ class DataController {
    */
   async getAllData(req, res) {
     try {
-      const data = await Data.find();
+      const data = await Data.find({ isDeleted: false });
       return res.status(201).json(data);
     } catch (error) {
       console.log("Error while getAllData api calling: ", error.message);
@@ -63,12 +63,16 @@ class DataController {
   }
 
   /**
-   * @method getDataById
+   * @method getDataByImsi
    */
-  async getDataById(req, res) {
+  async getDataByImsi(req, res) {
     try {
-      const { id } = req.params;
-      const data = await Data.findById(id);
+      const { imsi } = req.params;
+
+      const data = await Data.findOne({
+        "GetResponseSubscriber.imsi": imsi,
+        isDeleted: false,
+      });
 
       if (!data) {
         return res.status(404).json({ error: "Data not found" });
@@ -76,7 +80,7 @@ class DataController {
 
       return res.status(200).json(data);
     } catch (error) {
-      console.log("Error while getDataById api calling: ", error.message);
+      console.log("Error while getDataByImsi API call: ", error.message);
       return res.status(500).json(error.message);
     }
   }

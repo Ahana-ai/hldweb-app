@@ -54,10 +54,7 @@ const DataSchema = new mongoose.Schema(
       hlrsn: strR,
       cardType: strNR,
       nam: strR,
-      services: {
-        type: servicesSchema,
-        required: true,
-      },
+      services: servicesSchema,
       rroption: strNR,
       skey: strNR,
     },

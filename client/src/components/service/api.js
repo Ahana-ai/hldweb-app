@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const url =
-  "https://crudcrud.com/api/65c5f9dc151a4ca38d5fe4c52511dc95/ericssondemohlr/";
+  // "https://crudcrud.com/api/65c5f9dc151a4ca38d5fe4c52511dc95/ericssondemohlr/";
+  "http://localhost:5000";
 
 const mongoUrl = "http://localhost:3000";
 
@@ -14,7 +15,7 @@ let request, response, dataReturn;
  */
 export const getAllData = async () => {
   try {
-    let res = await axios.get(`/api3`);
+    let res = await axios.get(`/api3/all-data`);
     console.log(res.data);
 
     request = ["GET", url, axios.defaults.headers.common, ""];
@@ -32,10 +33,10 @@ export const getAllData = async () => {
  * @method editData
  */
 export const editData = async () =>
-  //id, data
+  //imsi, data
   {
     try {
-      let id = "649FE010C632B703E830829F";
+      let imsi = "734025000145829";
       let data = {
         GetResponseSubscriber: {
           imsi: "734025000145829",
@@ -86,7 +87,7 @@ export const editData = async () =>
           skey: "0",
         },
       };
-      let res = await axios.put(`/api3/${id}`, data);
+      let res = await axios.put(`/api3/update-data/${imsi}`, data);
       console.log("Data Saved: ", res);
     } catch (error) {
       console.log("Error while calling editData--> ", error.message);
@@ -100,8 +101,8 @@ export const deleteData = async () =>
   //id
   {
     try {
-      let id = "649FE010C632B703E830829F";
-      axios.delete(`/api3/${id}`);
+      let imsi = "734025000145829";
+      axios.delete(`/api3/delete/${imsi}`);
       console.log("Data deleted!");
     } catch (error) {
       console.log("Error while calling deleteData--> ", error.message);
@@ -117,14 +118,14 @@ export const postData = async () =>
     try {
       let data = {
         GetResponseSubscriber: {
-          imsi: "734025000145829",
-          msisdn: "584124997370",
-          hlrsn: "1",
-          cardType: "USIM",
-          nam: "BOTH",
+          imsi: "624025000145829",
+          msisdn: "434124997370",
+          hlrsn: "2",
+          cardType: "SIMT",
+          nam: "TOTH",
           services: {
             clip: {
-              prov: "PROV",
+              prov: "BOUP",
             },
             smsmt: "",
             optgprss: {
@@ -148,7 +149,7 @@ export const postData = async () =>
               ],
             },
             odboc: {
-              odboc: "BOIC",
+              odboc: "COFG",
             },
             odbroam: {
               odbroam: "BROHPLMNC",
@@ -162,10 +163,10 @@ export const postData = async () =>
             smdp: "MSC",
           },
           rroption: "ALL_PLMNS",
-          skey: "0",
+          skey: "1",
         },
       };
-      let res = await axios.post("/api3", data);
+      let res = await axios.post("/api3/new-data", data);
       console.log("Data saved: ", res.data);
     } catch (error) {
       console.log("Error calling postData--> ", error.message);

@@ -19,7 +19,8 @@ export default defineConfig({
       },
       "/api3": {
         target:
-          "https://crudcrud.com/api/de9809e23e8246e8a63538669bb8efdf/ericssondemohlr/",
+          // "https://crudcrud.com/api/de9809e23e8246e8a63538669bb8efdf/ericssondemohlr/",
+          "http://localhost:5000",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api3/, ''),
       },

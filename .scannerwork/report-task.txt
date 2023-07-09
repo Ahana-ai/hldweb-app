@@ -1,6 +1,6 @@
-projectKey=hldweb-app
+projectKey=hld-web-app2
 serverUrl=http://localhost:9000
 serverVersion=10.1.0.73491
-dashboardUrl=http://localhost:9000/dashboard?id=hldweb-app
-ceTaskId=AYkbzVEI7CLDEFjIpgqK
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYkbzVEI7CLDEFjIpgqK
+dashboardUrl=http://localhost:9000/dashboard?id=hld-web-app2
+ceTaskId=AYk7MtTVkzAae-pj9PX5
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYk7MtTVkzAae-pj9PX5

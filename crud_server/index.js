@@ -22,7 +22,7 @@ app2.use(
 app2.use(express.json({ extended: true }));
 
 app2.use("/", router);
-// app2.use("/api2", router);
+app2.use("/api3", router);
 
 Connections();
 
