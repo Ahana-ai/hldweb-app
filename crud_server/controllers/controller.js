@@ -1,4 +1,6 @@
 import Data from "../models/model.js";
+import request from "request";
+// const request = require('request');
 
 class DataController {
   /**
@@ -55,6 +57,7 @@ class DataController {
   async getAllData(req, res) {
     try {
       const data = await Data.find({ isDeleted: false });
+
       return res.status(201).json(data);
     } catch (error) {
       console.log("Error while getAllData api calling: ", error.message);
@@ -81,6 +84,36 @@ class DataController {
       return res.status(200).json(data);
     } catch (error) {
       console.log("Error while getDataByImsi API call: ", error.message);
+      return res.status(500).json(error.message);
+    }
+  }
+
+  /**
+   * @method getSelectiveDataByImsi
+   */
+  async getSelectiveDataByImsi(req, res) {
+    try {
+      let data = null;
+      let imsiList = req.body.imsiList;
+      let ResultImsi = [];
+      console.log(imsiList);
+      for (let i = 0; i < imsiList.length; i++) {
+        data = await Data.findOne({
+          "GetResponseSubscriber.imsi": imsiList[i].imsi,
+          isDeleted: false,
+        });
+        ResultImsi.push(data);
+        if (!data) {
+          return res.status(404).json({ error: "Data not found" });
+        }
+      }
+
+      return res.json(ResultImsi);
+    } catch (error) {
+      console.log(
+        "Error while getSelectiveDataByImsi API call: ",
+        error.message
+      );
       return res.status(500).json(error.message);
     }
   }
@@ -141,7 +174,8 @@ class DataController {
 
       const updatedData = await Data.findOneAndUpdate(
         { "GetResponseSubscriber.imsi": imsi },
-        { isDeleted: true }
+        { isDeleted: true },
+        { new: true }
       );
 
       if (!updatedData) {
