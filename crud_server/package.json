@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon start index.js",
+    "build": "npm i"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +18,6 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "helmet": "^7.0.0",
-    "mongoose": "^7.3.2",
-    "request": "^2.88.2"
+    "mongoose": "^7.3.2"
   }
 }

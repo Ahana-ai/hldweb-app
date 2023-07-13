@@ -1,6 +1,4 @@
 import Data from "../models/model.js";
-import request from "request";
-// const request = require('request');
 
 class DataController {
   /**
