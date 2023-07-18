@@ -21,8 +21,8 @@ export default defineConfig({
       "/api3": {
         target:
           // "https://crudcrud.com/api/de9809e23e8246e8a63538669bb8efdf/ericssondemohlr/",
-          // "http://localhost:5000",
-          "https://hldweb-app-crud-service.onrender.com",
+          "http://localhost:5000",
+          // "https://hldweb-app-crud-service.onrender.com",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api3/, ""),
       },

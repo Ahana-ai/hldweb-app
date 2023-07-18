@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import router from "./router/routes.js";
 import Connections from "./database/db.js";
+import cors from "cors";
 
 dotenv.config();
 
@@ -20,6 +21,8 @@ app2.use(
   })
 );
 app2.use(express.json({ extended: true }));
+
+app2.use(cors())
 
 app2.use("/", router);
 app2.use("/api3", router);
