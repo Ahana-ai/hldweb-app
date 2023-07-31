@@ -14,8 +14,7 @@ class DataController {
       });
 
       if (isUserExists) {
-        // return res.status(400).json({ message: "Data Already Exists" });
-        return res.status(400).send({errors: error.array()})
+        return res.status(400).json({ message: "Data Already Exists" });
       } else {
         const data = {
           GetResponseSubscriber: {
