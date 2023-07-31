@@ -8,44 +8,56 @@ class DataController {
     try {
       const payload = req.body.GetResponseSubscriber;
 
-      await new Data({
-        GetResponseSubscriber: {
-          imsi: payload.imsi,
-          msisdn: payload.msisdn,
-          hlrsn: payload.hlrsn,
-          cardType: payload.cardType,
-          nam: payload.nam,
-          services: {
-            clip: {
-              prov: payload.services.clip.prov,
+      const isUserExists = await Data.find({
+        imsi: payload.imsi,
+        msisdn: payload.msisdn,
+      });
+
+      if (isUserExists) {
+        // return res.status(400).json({ message: "Data Already Exists" });
+        return res.status(400).send({errors: error.array()})
+      } else {
+        const data = {
+          GetResponseSubscriber: {
+            imsi: payload.imsi,
+            msisdn: payload.msisdn,
+            hlrsn: payload.hlrsn,
+            cardType: payload.cardType,
+            nam: payload.nam,
+            services: {
+              clip: {
+                prov: payload.services.clip.prov,
+              },
+              smsmt: payload.services.smsmt,
+              optgprss: {
+                optgprs: payload.services.optgprss.optgprs,
+              },
+              odboc: {
+                odboc: payload.services.odboc.odboc,
+              },
+              odbroam: {
+                odbroam: payload.services.odbroam.odbroam,
+              },
+              category: {
+                category: payload.services.category.category,
+              },
+              eps: {
+                prov: payload.services.eps.prov,
+              },
+              smdp: payload.services.smdp,
             },
-            smsmt: payload.services.smsmt,
-            optgprss: {
-              optgprs: payload.services.optgprss.optgprs,
-            },
-            odboc: {
-              odboc: payload.services.odboc.odboc,
-            },
-            odbroam: {
-              odbroam: payload.services.odbroam.odbroam,
-            },
-            category: {
-              category: payload.services.category.category,
-            },
-            eps: {
-              prov: payload.services.eps.prov,
-            },
-            smdp: payload.services.smdp,
+            rroption: payload.rroption,
+            skey: payload.skey,
           },
-          rroption: payload.rroption,
-          skey: payload.skey,
-        },
-      }).save();
-      console.log("Saved!!");
-      return res.status(201).json({ message: "Data Saved" });
+        };
+
+        await new Data(data).save();
+        console.log("Saved!!");
+        return res.status(201).json({ message: "Data Saved" });
+      }
     } catch (error) {
-      console.log("Error while postData api calling: ", error.message);
-      return res.status(500).json(error.message);
+      console.log("Error while postData API calling: ", error.message);
+      return res.status(500).json({ error: error.message });
     }
   }
 

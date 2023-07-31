@@ -9,27 +9,18 @@ const strNR = {
   type: String,
 };
 
-const nestedOptGprsSchema = new mongoose.Schema({
-  prov: {
-    type: String,
-    required: true,
-  },
-  cntxId: {
-    type: String,
-    required: true,
-  },
-});
-
 const servicesSchema = {
   clip: {
     prov: strNR,
   },
   smsmt: strNR,
   optgprss: {
-    optgprs: {
-      type: [nestedOptGprsSchema],
-      required: true,
-    },
+    optgprs: [
+      {
+        prov: strR,
+        cntxId: strR,
+      },
+    ],
   },
   odboc: {
     odboc: strR,

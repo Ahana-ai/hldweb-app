@@ -13,8 +13,8 @@ export default defineConfig({
       },
       "/api2": {
         target: 
-        // "http://localhost:3000",
-        "https://hldweb-app-transactional-log.onrender.com",
+        "http://localhost:3000",
+        // "https://hldweb-app-transactional-log.onrender.com",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api2/, ""),
       },
