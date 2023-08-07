@@ -86,39 +86,6 @@ class DataController {
         isDeleted: false,
       });
 
-      // const data = {
-      //   GetResponseSubscriber: {
-      //     imsi: payload.imsi,
-      //     msisdn: payload.msisdn,
-      //     hlrsn: payload.hlrsn,
-      //     cardType: payload.cardType,
-      //     nam: payload.nam,
-      //     services: {
-      //       clip: {
-      //         prov: payload.services.clip.prov,
-      //       },
-      //       smsmt: payload.services.smsmt,
-      //       optgprss: {
-      //         optgprs: payload.services.optgprss.optgprs,
-      //       },
-      //       odboc: {
-      //         odboc: payload.services.odboc.odboc,
-      //       },
-      //       odbroam: {
-      //         odbroam: payload.services.odbroam.odbroam,
-      //       },
-      //       category: {
-      //         category: payload.services.category.category,
-      //       },
-      //       eps: {
-      //         prov: payload.services.eps.prov,
-      //       },
-      //       smdp: payload.services.smdp,
-      //     },
-      //     rroption: payload.rroption,
-      //     skey: payload.skey,
-      //   },
-      // };
       if (!data) {
         return res.status(404).json({ error: "Data not found" });
       }
