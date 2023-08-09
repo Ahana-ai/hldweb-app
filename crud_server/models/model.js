@@ -32,9 +32,9 @@ const servicesSchema = {
     category: strR,
   },
   eps: {
-    prov: strR,
+    prov: strNR,
   },
-  smdp: strR,
+  smdp: strNR,
 };
 
 const DataSchema = new mongoose.Schema(

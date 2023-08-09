@@ -24,6 +24,7 @@ class LogController {
           },
         ],
       }).save();
+      return res.status(200).json({message: "Log Saved!"})
     } catch (error) {
       console.log("Error while newRestLog api calling : ", error.message);
       return res.status(500).json(error.message);
