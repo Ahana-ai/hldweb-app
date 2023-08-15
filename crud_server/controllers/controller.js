@@ -13,7 +13,7 @@ class DataController {
         msisdn: payload.msisdn,
       });
 
-      if (isUserExists && !isUserExists.length == 0) {
+      if (isUserExists) {
         return res.status(400).json({ message: "Data Already Exists" });
       } else {
         const data = {
