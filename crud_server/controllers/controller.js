@@ -9,12 +9,14 @@ class DataController {
       const payload = req.body.GetResponseSubscriber;
 
       const isUserExists = await Data.find({
-        imsi: payload.imsi,
-        msisdn: payload.msisdn,
+        "GetResponseSubscriber.imsi": payload.imsi,
+        "GetResponseSubscriber.msisdn": payload.msisdn,
       });
+      console.log(isUserExists.length)
 
-      if (isUserExists) {
-        return res.status(400).json({ message: "Data Already Exists" });
+      if (isUserExists.length > 0) {
+        res.status(400).json({ message: "Data Already Exists" });
+        return res.end()
       } else {
         const data = {
           GetResponseSubscriber: {
@@ -50,7 +52,8 @@ class DataController {
           },
         };
 
-        await new Data(data).save();
+        const d = new Data(data);
+        await d.save();
         console.log("Saved!!");
         return res.status(201).json({ message: "Data Saved" });
       }
